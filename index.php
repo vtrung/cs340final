@@ -1,6 +1,6 @@
 <?php
 
-include 'connect.php'
+include 'data/connect.php'
 ?>
 
 <html>
@@ -8,5 +8,6 @@ include 'connect.php'
 </head>
 <body>
   <h1>hello php</h1>
+
 </body>
 </html>
