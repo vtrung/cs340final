@@ -20,23 +20,7 @@ $db = new mysqli('localhost', 'root', 'root', 'cars');
 if($db->connect_errno > 0){
     die('Unable to connect to database [' . $db->connect_error . ']');
 } else {
-    echo 'Successfully connected to database!';
-}
-
-function insertPerson($fname, $lname, $address){
-
-}
-
-function insertAddress($address, $city){
-
-}
-
-function insertMaker($name){
-
-}
-
-function insertModel($name){
-
+    echo 'Successfully connected to database! <br/>';
 }
 
 ?>
