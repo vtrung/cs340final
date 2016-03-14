@@ -2,4 +2,6 @@
   Links <br>
   <a href='index.php'> View Data </a> <br>
   <a href='dataentry.php'> Enter Data </a> <br>
+  <a href='updateentry.php'> Update Data </a> <br>
+  <a href='deleteentry.php'> Delete Data </a> <br>
 </div>

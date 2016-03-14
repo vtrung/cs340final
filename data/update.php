@@ -6,7 +6,7 @@ $q = $_POST["q"];
 echo $q;
 
 if($q == "address"){
-  echo " Creating Address</br> ";
+  echo "Updating Address</br> ";
   $sql =    "INSERT INTO address (address, city, state, country) VALUES (?,?,?,?);";
   if(!($stmt = $db->prepare($sql))){
   	echo "</br> Prepare failed: "  . $stmt->errno . " " . $stmt->error;
@@ -23,7 +23,7 @@ if($q == "address"){
 }
 
 else if($q == "maker"){
-  echo " Creating Maker</br> ";
+  echo "Updating Maker</br> ";
   $sql =    "INSERT INTO maker (name, address_id) VALUES (?,?);";
   if(!($stmt = $db->prepare($sql))){
   	echo "</br> Prepare failed: "  . $stmt->errno . " " . $stmt->error;
@@ -40,7 +40,7 @@ else if($q == "maker"){
 }
 
 else if($q == "owner"){
-  echo " Creating Owner</br> ";
+  echo "Updating Owner</br> ";
 
   $sql =    "INSERT INTO owner (first_name, last_name, birth_date, address_id) VALUES (?,?,?,?);";
   if(!($stmt = $db->prepare($sql))){
@@ -58,7 +58,7 @@ else if($q == "owner"){
 }
 
 else if($q == "car"){
-  echo " Creating Car</br> ";
+  echo "Updating Car</br> ";
   $sql =    "INSERT INTO car (name, year, maker_id) VALUES (?,?,?);";
   if(!($stmt = $db->prepare($sql))){
     echo "</br> Prepare failed: "  . $stmt->errno . " " . $stmt->error;
@@ -75,7 +75,7 @@ else if($q == "car"){
 }
 
 else if($q == "owner-car"){
-  echo " Creating Owner-Car</br> ";
+  echo "Updating Owner-Car</br> ";
   $sql =    "INSERT INTO owner_car (owner_id, car_id, purchase_date) VALUES (?,?,?);";
   if(!($stmt = $db->prepare($sql))){
     echo "</br> Prepare failed: "  . $stmt->errno . " " . $stmt->error;

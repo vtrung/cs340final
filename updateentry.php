@@ -7,7 +7,7 @@
 <head>
 </head>
 <body>
-  <h1>Enter Data</h1>
+  <h1>Update Data</h1>
   <?php include '_navi.php'; ?>
 
   <div class='box-form'>

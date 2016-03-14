@@ -19,14 +19,19 @@ include 'data/connect.php';
       <tr>
         <td>First Name</td>
         <td>Last Name</td>
+        <td>Address</td>
+        <td>City</td>
+        <td>State</td>
+        <td>Country</td>
         <td>Year</td>
         <td>Maker</td>
         <td>Model</td>
       </tr>
       <?php
       // List All Owners with Cars
-      $sql = 'SELECT owner.first_name, owner.last_name, car.year, maker.name, car.name ';
+      $sql = 'SELECT owner.first_name, owner.last_name, address.address, address.city, address.state, address.country, car.year, maker.name, car.name ';
       $sql .= 'FROM owner ';
+      $sql .= 'INNER JOIN address ON owner.address_id = address.id ';
       $sql .= 'INNER JOIN owner_car ON owner.id = owner_car.owner_id ';
       $sql .= 'INNER JOIN car ON owner_car.car_id = car.id ';
       $sql .= 'INNER JOIN maker ON car.maker_id = maker.id; ';
@@ -37,12 +42,13 @@ include 'data/connect.php';
       if(!$stmt->execute()){
       echo "Execute failed: "  . $db->connect_errno . " " . $db->connect_error;
       }
-      if(!$stmt->bind_result($first_name, $last_name, $car_year, $car_maker, $car_model)){
+      if(!$stmt->bind_result($first_name, $last_name, $address, $city, $state, $country, $car_year, $car_maker, $car_model)){
       echo "Bind failed: "  . $db->connect_errno . " " . $db->connect_error;
       }
       while($stmt->fetch()){
-      echo "<tr>\n<td>\n" . $first_name . "\n</td>\n<td>\n" . $last_name . "\n</td>\n<td>\n" . $car_year . "\n</td>\n<td>\n";
-      echo  $car_maker . "\n</td>\n<td>\n" . $car_model . "\n</td>\n</tr>";
+      echo "<tr>\n<td>\n" . $first_name . "\n</td>\n<td>\n" . $last_name . "\n</td>\n<td>\n";
+      echo $address . "\n</td>\n<td>\n" . $city . "\n</td>\n<td>\n". $state . "\n</td>\n<td>\n" . $country . "\n</td>\n<td>\n";
+      echo $car_year . "\n</td>\n<td>\n" . $car_maker . "\n</td>\n<td>\n" . $car_model . "\n</td>\n</tr>";
       }
       $stmt->close();
       ?>
@@ -50,4 +56,15 @@ include 'data/connect.php';
 </div>
   </div>
 </body>
+<style>
+  table {
+    border-collapse: collapse;
+  }
+
+  table, th, td {
+    border: 1px solid black;
+    padding: 2px;
+  }
+
+</style>
 </html>
