@@ -3,6 +3,7 @@
 
   $q = $_POST["q"];
 
+  //  DELETE OWNERSHIP
   if($q == "owner_car"){
     echo " Deleting Car Ownership</br> ";
     $sql =    "DELETE FROM owner_car WHERE id = ?";
@@ -20,6 +21,7 @@
     $stmt->close();
   }
 
+//  DELETE OWNER
   else if($q == "owner"){
     echo " Deleting Owner</br> ";
     $sql =    "DELETE FROM owner WHERE id = ?";
@@ -37,6 +39,7 @@
     $stmt->close();
   }
 
+//  DELETE CAR
   else if($q == "car"){
     echo " Deleting Car</br> ";
     $sql =    "DELETE FROM car WHERE id = ?";
@@ -54,6 +57,7 @@
     $stmt->close();
   }
 
+//  DELETE ADDRESS
   else if($q == "address"){
     echo " Deleting Address</br> ";
     $sql =    "DELETE FROM address WHERE id = ?";
