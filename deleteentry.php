@@ -120,6 +120,7 @@
             echo "Bind failed: "  . $db->connect_errno . " " . $db->connect_error;
             }
             while($stmt->fetch()){
+              if($addr_address != "No Address")
               echo "<option type='text' value='" . $addr_id . "'>" . $addr_address. " , " . $addr_city . " , " . $addr_state . " , " . $addr_country . "</option>";
             }
             $stmt->close();

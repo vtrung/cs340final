@@ -35,7 +35,21 @@ include 'data/connect.php';
       $sql .= 'INNER JOIN address ON owner.address_id = address.id ';
       $sql .= 'INNER JOIN owner_car ON owner.id = owner_car.owner_id ';
       $sql .= 'INNER JOIN car ON owner_car.car_id = car.id ';
-      $sql .= 'INNER JOIN maker ON car.maker_id = maker.id; ';
+      $sql .= 'INNER JOIN maker ON car.maker_id = maker.id ';
+      $sql .= 'WHERE owner.first_name IS NOT NULL ';
+      if($_POST['state'] != "")
+        $sql .= " AND address.state ='" . $_POST['state'] . "' ";
+
+      if($_POST['city'] != "")
+        $sql .= " AND address.city ='" . $_POST['city'] . "' ";
+
+      if($_POST['country'] != "")
+        $sql .= " AND address.state ='" . $_POST['country'] . "' ";
+
+      if($_POST['brand'] != "")
+        $sql .= " AND maker.name ='" . $_POST['brand'] . "' ";
+
+
       if(!($stmt = $db->prepare($sql))){
       echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
       }
@@ -57,8 +71,99 @@ include 'data/connect.php';
 
   </div>
   <div>
-    <p> Filters </p>
+    <h4> Filters </h4>
     <form method="POST" action="index.php">
+      <span style='font-weight:600;'>Filter by Location</span> <br>
+      State:
+      <select name='state'>
+        <option value=""></option>
+        <?php
+          $m_sql = "SELECT DISTINCT state FROM address; ";
+          if(!($stmt = $db->prepare($m_sql))){
+            echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+          }
+
+          if(!$stmt->execute()){
+          echo "Execute failed: "  . $db->connect_errno . " " . $db->connect_error;
+          }
+          if(!$stmt->bind_result($m_name)){
+          echo "Bind failed: "  . $db->connect_errno . " " . $db->connect_error;
+          }
+          while($stmt->fetch()){
+            if($m_name != "0")
+              echo "<option type='text' value='" . $m_name . "'>" . $m_name . "</option>";
+          }
+          $stmt->close();
+        ?>
+      </select><br>
+      City:
+      <select name='city'>
+        <option value=""></option>
+        <?php
+          $m_sql = "SELECT DISTINCT city FROM address; ";
+          if(!($stmt = $db->prepare($m_sql))){
+            echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+          }
+
+          if(!$stmt->execute()){
+          echo "Execute failed: "  . $db->connect_errno . " " . $db->connect_error;
+          }
+          if(!$stmt->bind_result($m_name)){
+          echo "Bind failed: "  . $db->connect_errno . " " . $db->connect_error;
+          }
+          while($stmt->fetch()){
+            if($m_name != "0")
+              echo "<option type='text' value='" . $m_name . "'>" . $m_name . "</option>";
+          }
+          $stmt->close();
+        ?>
+      </select><br>
+      Country:
+      <select name='country'>
+        <option value=""></option>
+        <?php
+          $m_sql = "SELECT DISTINCT country FROM address; ";
+          if(!($stmt = $db->prepare($m_sql))){
+            echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+          }
+
+          if(!$stmt->execute()){
+          echo "Execute failed: "  . $db->connect_errno . " " . $db->connect_error;
+          }
+          if(!$stmt->bind_result($m_name)){
+          echo "Bind failed: "  . $db->connect_errno . " " . $db->connect_error;
+          }
+          while($stmt->fetch()){
+            if($m_name != "0")
+              echo "<option type='text' value='" . $m_name . "'>" . $m_name . "</option>";
+          }
+          $stmt->close();
+        ?>
+      </select><br>
+
+      <br><span style='font-weight:600;'>Filter by Car Info</span> <br>
+      Brand:
+      <select name='brand'>
+        <option value=""></option>
+        <?php
+          $m_sql = "SELECT name FROM maker; ";
+          if(!($stmt = $db->prepare($m_sql))){
+            echo "Prepare failed: "  . $stmt->errno . " " . $stmt->error;
+          }
+
+          if(!$stmt->execute()){
+          echo "Execute failed: "  . $db->connect_errno . " " . $db->connect_error;
+          }
+          if(!$stmt->bind_result($m_name)){
+          echo "Bind failed: "  . $db->connect_errno . " " . $db->connect_error;
+          }
+          while($stmt->fetch()){
+            echo "<option type='text' value='" . $m_name . "'>" . $m_name . "</option>";
+          }
+          $stmt->close();
+        ?>
+      </select><br>
+
       <input type='submit' value='filter'>
     </form>
   </div>
