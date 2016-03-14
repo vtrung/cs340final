@@ -92,7 +92,7 @@
 
 <!-- Create Owner -->
   <div class='box-form'>
-    <h3>Add Owner</h3>
+    <h3>Update Owner</h3>
     <form id='add-owner' action='data/update.php' method='post'>
       <input name='q' value='owner' style='display:none'>
       <select name='o_id'>

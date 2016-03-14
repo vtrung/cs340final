@@ -37,6 +37,7 @@ include 'data/connect.php';
       $sql .= 'INNER JOIN car ON owner_car.car_id = car.id ';
       $sql .= 'INNER JOIN maker ON car.maker_id = maker.id ';
       $sql .= 'WHERE owner.first_name IS NOT NULL ';
+      // Add filter where statements based on post
       if($_POST['state'] != "")
         $sql .= " AND address.state ='" . $_POST['state'] . "' ";
 
@@ -71,7 +72,24 @@ include 'data/connect.php';
 
   </div>
   <div>
-    <h4> Filters </h4>
+    <h4>
+      Filters:
+      <?php
+        // Add filter where statements based on post
+        if($_POST['state'] != "")
+          echo "  State = " . $_POST['state'] . "  ";
+
+        if($_POST['city'] != "")
+          echo "  City = " . $_POST['city'] . "  ";
+
+        if($_POST['country'] != "")
+          echo "  Country = " . $_POST['country'] . "  ";
+
+        if($_POST['brand'] != "")
+          echo "  Brand = " . $_POST['brand'] . "  ";
+      ?>
+
+    </h4>
     <form method="POST" action="index.php">
       <span style='font-weight:600;'>Filter by Location</span> <br>
       State:
