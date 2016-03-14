@@ -85,6 +85,7 @@
 
 <!-- Create Car-->
   <div class='box-form'>
+    <h3>Add Car</h3>
     <form id='add-car' action='data/create.php' method='post'>
       <input name='q' value='car' style='display:none'>
       Name: <input name='car_name' type='text'></br>
@@ -114,6 +115,7 @@
 
 <!-- Create CarOwnership -->
   <div class='box-form'>
+    <h3>Add Car-Ownership</h3>
     <form id='add-owner-car' action='data/create.php' method='post'>
       <input name='q' value='owner-car' style='display:none'>
       Owner:

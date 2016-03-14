@@ -7,11 +7,12 @@ include 'data/connect.php';
 <head>
 </head>
 <body>
-  <h1>Car Ownership Data</h1>
+  <h1> Car Ownership Data </h1>
+  <p> by Ving Trung </p>
   <?php
     include '_navi.php';
   ?>
-  <div>
+  <div style='margin: 20px 0;'>
     <table>
       <tr>
         <td>Car Owners</td>
@@ -53,7 +54,13 @@ include 'data/connect.php';
       $stmt->close();
       ?>
     </table>
-</div>
+
+  </div>
+  <div>
+    <p> Filters </p>
+    <form method="POST" action="index.php">
+      <input type='submit' value='filter'>
+    </form>
   </div>
 </body>
 <style>

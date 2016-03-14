@@ -5,6 +5,7 @@ include 'connect.php';
 $q = $_POST["q"];
 echo $q;
 
+// Creating Address
 if($q == "address"){
   echo " Creating Address</br> ";
   $sql =    "INSERT INTO address (address, city, state, country) VALUES (?,?,?,?);";
@@ -22,6 +23,7 @@ if($q == "address"){
   $stmt->close();
 }
 
+// Creating Maker
 else if($q == "maker"){
   echo " Creating Maker</br> ";
   $sql =    "INSERT INTO maker (name, address_id) VALUES (?,?);";
@@ -39,6 +41,7 @@ else if($q == "maker"){
   $stmt->close();
 }
 
+// Creating Owner
 else if($q == "owner"){
   echo " Creating Owner</br> ";
 
@@ -57,6 +60,7 @@ else if($q == "owner"){
   $stmt->close();
 }
 
+// Creating Car
 else if($q == "car"){
   echo " Creating Car</br> ";
   $sql =    "INSERT INTO car (name, year, maker_id) VALUES (?,?,?);";
@@ -74,6 +78,7 @@ else if($q == "car"){
   $stmt->close();
 }
 
+// Creating Car-Ownership
 else if($q == "owner-car"){
   echo " Creating Owner-Car</br> ";
   $sql =    "INSERT INTO owner_car (owner_id, car_id, purchase_date) VALUES (?,?,?);";
